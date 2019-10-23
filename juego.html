@@ -1,0 +1,92 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Rompecabezas-Colque</title>
+  <link rel="stylesheet" href="css/juego.css">
+  <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+  <script src="js/sweetalert/sweetalert.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="js/sweetalert/sweetalert.css">
+  <link href="https://fonts.googleapis.com/css?family=Oswald:300,400,500,600,700" rel="stylesheet">
+  <script src="js/juego.js"></script>
+
+</head>
+<body>
+    <div id="contenido">
+        <h1> Rompecabezas recargado</h1>
+        <div class="col-40">
+
+            <div id="apartado">
+                <h2>Objetivo</h2>
+                <ul>
+                    <li>Encontrar el orden correcto de las piezas,<br>moviendolas presionando las teclas de flechas, o del mouse </li>
+                </ul>
+                <h2> Seleccionar</h2>
+
+                <form>
+                   
+                    <ul>
+                       
+                        <li>
+                            Cantidad de piezas por lado:
+                            <input id="cantidadPiezasPorLado" type="number" name="quantity" min="2" value="4" maxlength="4" size="4" max="10" value="4">
+                </form> </li>
+                <div id="eleccionDeNivel">
+                    <li>
+                        Nivel de dificultad:
+                        <input class="dificultad" id="facil" type="radio" name="opciones" value="8"> Facil
+                        <input class="dificultad" id="intermedio" type="radio" name="opciones" value="6">Intermedio
+
+                        <input class="dificultad" id="dificil" type="radio" name="opciones" value="4">Dificil
+                    </li>
+                </div> 
+                </ul> 
+            </div> 
+            <div><button id="boton" class="button">Mezclar</button></div>
+
+            <div><button id="botonPista" class="button" onclick="mostrarImagenPista()">Pista </button></div>
+
+            <div id="ïmagen">
+
+            </div>
+
+            <div id="contadorMovimientos">Movimientos</br>restantes <span id="contadorDeMovimientos"></span></div>
+
+        </div> 
+
+   
+
+        <div class="col-60" id="juego">
+            
+            <canvas id="canvas" onclick="Juego.capturarMouse()"></canvas>
+        </div> 
+    </div> 
+      <script>
+
+      $(document).ready(function() {
+
+        var nivelElegido = function() {
+          var dificultad = $('#eleccionDeNivel input:checked').val()
+          var cantPiezasPorLado = document.querySelector('#cantidadPiezasPorLado').value;
+          var cantPiezas = cantPiezasPorLado*cantPiezasPorLado;
+          var cantMovimientos = cantPiezas*dificultad;
+          Juego.iniciar(cantMovimientos);
+        };
+        $( "#eleccionDeNivel input[type=radio]" ).on( "click", nivelElegido );
+
+        $('#boton').click(function(){
+          var cantPiezasPorLado = document.querySelector('#cantidadPiezasPorLado').value;
+          var cantPiezas = cantPiezasPorLado*cantPiezasPorLado;
+          var cantMovimientos = Math.max(Math.pow(cantPiezasPorLado,3),100);
+          Juego.mezclarPiezas(cantMovimientos);
+        });
+      });
+      function mostrarImagenPista() {
+            document.getElementById("ïmagen").innerHTML='<img src="images/imagenPista.jpg" width="270" height="200" />';
+      }
+
+      </script>
+
+
+  </body>
+  </html>
