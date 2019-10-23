@@ -1,0 +1,48 @@
+body {
+  font-family: Arial, sans-serif;
+  width: 940px;
+  margin: 5% auto;
+  min-height: 100%;
+  background-image: url(../images/imagenFondo.jpg);
+}
+h1{
+  text-align: center;
+  color:white;
+  background-color:rgb(255, 166, 71);
+}
+.col-40, .col-60 { 
+  display: table-cell;
+  margin: 0;
+  vertical-align: top;
+  position: relative;
+}
+
+#juego  {
+  height: 600px;
+  width: 600px;
+  background-color:rgb(255, 150, 71);
+  text-align:center; ;
+  animation: fadein 2s;
+}
+.col-40{
+  background-color:rgb(255, 166, 71);
+}
+#contadorMovimientos {
+  text-transform: uppercase;
+  position: absolute;
+  bottom: 20px;
+  font-size: 15px;
+  width: 90px;
+}
+.button{
+  display: inline-block;
+  font-size: 16px;
+  float:left;
+  text-align: center;
+}
+
+@keyframes fadein {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
